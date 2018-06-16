@@ -10,7 +10,7 @@ class PrimeNumbers extends StatefulWidget {
 
 class _PrimeNumbers extends State<PrimeNumbers> {
   final TextEditingController _controller = new TextEditingController();
-  final times = 30;
+  final times = 1;
   var currentTime = 0;
 
   _PrimeNumbers();
