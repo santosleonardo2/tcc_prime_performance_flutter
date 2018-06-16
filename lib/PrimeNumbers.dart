@@ -12,14 +12,15 @@ class _PrimeNumbers extends State<PrimeNumbers> {
   final TextEditingController _controller = new TextEditingController();
   final times = 1;
   var currentTime = 0;
+  var timeSpent;
 
   _PrimeNumbers();
 
   calculatePrime() {
     print('TIME IN MICROSECONDS');
     for (var x = 0; x < this.times; x++) {
+      final value = _controller.text == '' ? 0 : int.parse(this._controller.text);
       final startTime = DateTime.now();
-      final value = _controller.text == '' ? 0 : int.parse(this._controller.text.toString());
 
       var primeNumbers = [];
       var count = 0;
@@ -38,6 +39,10 @@ class _PrimeNumbers extends State<PrimeNumbers> {
       }
       final endTime = DateTime.now();
       print(endTime.microsecondsSinceEpoch - startTime.microsecondsSinceEpoch);
+
+      setState(() {
+        this.timeSpent = endTime.microsecondsSinceEpoch - startTime.microsecondsSinceEpoch;
+      });
     }
   }
 
@@ -71,6 +76,7 @@ class _PrimeNumbers extends State<PrimeNumbers> {
                 child: new Text('Calculate', style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
               ),
             ),
+            new Text('Duration (us): ${timeSpent.toString()}'),
           ],
         ),
       ),
